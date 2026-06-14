@@ -152,6 +152,12 @@ body {
   transform: translateX(-3px);
 }
 
+.header-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
 /* 検索エリア */
 .search-form{
   display: flex;
@@ -554,4 +560,11 @@ textarea {
 }
 .priority-pill.low:has(.priority-radio:checked) {
   background:#198754; color:#fff;
+}
+
+/* admin関係 */
+.register-link {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

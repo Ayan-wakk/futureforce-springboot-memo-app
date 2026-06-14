@@ -25,11 +25,11 @@ public class Admin {
 
     @NotBlank(message = "姓を入力してください")
     @Column(nullable = false, length = 255)
-    private String last_name;
+    private String lastName;
 
     @NotBlank(message = "名を入力してください")
     @Column(nullable = false, length = 255)
-    private String first_name;
+    private String firstName;
     
     @Email
     @NotBlank(message = "メールアドレスを入力してください")
