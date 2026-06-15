@@ -77,6 +77,9 @@ public class MemoController {
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model, HttpServletResponse response) {
+    	
+      	model.addAttribute("priorities", Priority.values());
+    	
         if (model.containsAttribute("memo")) {
             return "memo-form";
         }
