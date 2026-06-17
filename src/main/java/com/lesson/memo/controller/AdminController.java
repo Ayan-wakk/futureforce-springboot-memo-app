@@ -1,9 +1,14 @@
 package com.lesson.memo.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,13 +26,21 @@ public class AdminController {
     private PasswordEncoder passwordEncoder;    
 	
 	@GetMapping("/signup")
-	public String signup(){
+	public String signup(Model model){
+		model.addAttribute("admin", new Admin());
         return "admin/signup";		
 	}
 	
 	@PostMapping("/signup")
-	public String signup(Admin admin){
-	
+	public String signup(@ModelAttribute @Valid Admin admin,
+                         BindingResult result,
+                         Model model){
+
+		if (result.hasErrors()) {
+         	model.addAttribute("admin", admin);
+            return "admin/signup";
+        }
+		
 		//パスワードをハッシュ化してDBへ保存
 		admin.setPassword(
 			passwordEncoder.encode(admin.getPassword())
